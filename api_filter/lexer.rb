@@ -41,9 +41,7 @@ module ApiFilter
                 else
                   lexeme = scanner.getch
 
-                  if SPECIAL_TOKENS[lexeme].present?
-                    SPECIAL_TOKENS[lexeme]
-                  end
+                  SPECIAL_TOKENS[lexeme] if SPECIAL_TOKENS[lexeme]
                 end
 
         if token_type.nil?
