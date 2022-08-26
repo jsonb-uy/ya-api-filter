@@ -1,18 +1,16 @@
 require 'bundler/setup'
-require 'api_filter'
 
 # Code coverage
-require 'coveralls'
 require 'simplecov'
 require 'simplecov-lcov'
 
 SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
 SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
-SimpleCov.start do
-  add_filter "/spec/"
+SimpleCov.start do 
+  add_filter("/spec/")
 end
 
-Coveralls.wear!
+require 'api_filter'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
