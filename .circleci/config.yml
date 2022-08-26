@@ -14,7 +14,7 @@ jobs:
           bundler-version: 2.1.4
       - ruby/rspec-test
       - coveralls/upload:
-        path_to_lcov: ./coverage/lcov/ya-api-filter.lcov
+          path_to_lcov: ./coverage/lcov/ya-api-filter.lcov
 workflows:
   version: 2
   build_and_test:     # The name of our workflow is "build_and_test"
