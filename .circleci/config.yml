@@ -9,7 +9,8 @@ jobs:
       - image: cimg/ruby:2.7.2
     steps:
       - checkout
-      - ruby/install-deps
+      - ruby/install-deps:
+          bundler-version: 2.1.4
       - ruby/rspec-test
 workflows:
   version: 2
