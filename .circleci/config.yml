@@ -2,16 +2,19 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@1.0
+  coveralls: coveralls/coveralls@1.0.4
 
 jobs:
   test:
     docker:
-      - image: cimg/ruby:2.7.2
+      - image: cimg/ruby:2.7.2-node
     steps:
       - checkout
       - ruby/install-deps:
           bundler-version: 2.1.4
       - ruby/rspec-test
+      - coveralls/upload:
+        path_to_lcov: ./coverage/lcov/project.lcov
 workflows:
   version: 2
   build_and_test:     # The name of our workflow is "build_and_test"
