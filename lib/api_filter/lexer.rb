@@ -6,7 +6,7 @@ module ApiFilter
     BOOLEAN_LITERAL = /(true)|(false)/
     NULL_LITERAL = /(null)/
     NUMERIC_LITERAL = /^[0-9]+((\.[0-9]+)|([0-9]*))/
-    OPERATORS = /^((and)|(or)|(not)|(eq)|(ne)|(lt)|(le)|(gt)|(ge)|(in)|(sw)|(ew)|(contains))\s+/
+    OPERATORS = /^((and)|(or)|(not)|(eq)|(ne)|(lt)|(le)|(gt)|(ge)|(in)|(sw)|(ew)|(contains))/
     WHITESPACE = /\s+/
 
     SPECIAL_TOKENS = {
@@ -62,5 +62,3 @@ module ApiFilter
     end
   end
 end
-
- ApiFilter::Lexer.new("null and true").scan_tokens
