@@ -3,6 +3,8 @@ module ApiFilter
     IDENTIFIER = /^[a-zA-Z_]((\.[a-zA-Z_])|(\w))*/
     DOUBLE_QUOTE_STRING_LITERAL = /^"[^\"]*"/
     SINGLE_QUOTE_STRING_LITERAL = /^'[^\'']*'/
+    BOOLEAN_LITERAL = /(true)|(false)/
+    NULL_LITERAL = /(null)/
     NUMERIC_LITERAL = /^[0-9]+((\.[0-9]+)|([0-9]*))/
     OPERATORS = /^((and)|(or)|(not)|(eq)|(ne)|(lt)|(le)|(gt)|(ge)|(in)|(sw)|(ew)|(contains))\s+/
     WHITESPACE = /\s+/
@@ -28,8 +30,12 @@ module ApiFilter
         token_type = if (lexeme = scanner.scan(WHITESPACE))
                   position += lexeme.size
                   next
+                elsif (lexeme = scanner.scan(NULL_LITERAL))
+                  :null_literal
                 elsif (lexeme = scanner.scan(OPERATORS))
                   :operator
+                elsif (lexeme = scanner.scan(BOOLEAN_LITERAL))
+                  :boolean_literal
                 elsif (lexeme = scanner.scan(IDENTIFIER))
                   :identifier
                 elsif (lexeme = scanner.scan(DOUBLE_QUOTE_STRING_LITERAL))
@@ -56,3 +62,5 @@ module ApiFilter
     end
   end
 end
+
+ ApiFilter::Lexer.new("null and true").scan_tokens
