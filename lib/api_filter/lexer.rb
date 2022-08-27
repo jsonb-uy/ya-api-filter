@@ -54,11 +54,11 @@ module ApiFilter
           raise StandardError, "Unexpected token '#{lexeme}' detected at index #{position}."
         end
 
-        tokens << [token_type, lexeme, position]
+        tokens << Token.new(token_type, lexeme, position)
         position += lexeme.size
       end
 
-      tokens << [:eof]
+      tokens << Token.new(:eof)
     end
   end
 end

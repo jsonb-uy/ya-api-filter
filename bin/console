@@ -11,4 +11,7 @@ require "api_filter"
 # Pry.start
 
 require "irb"
+
+include ApiFilter
+
 IRB.start(__FILE__)

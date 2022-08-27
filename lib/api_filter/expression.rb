@@ -1,7 +1,9 @@
 module ApiFilter
   class Expression
     def accept(visitor)
-      visitor.visit(self)
+      visit_method = "visit_#{self.class.name.demodulize.underscore}"
+
+      visitor.send(visit_method.to_sym, self)
     end
   end
 
@@ -12,14 +14,6 @@ module ApiFilter
       @left_expression = left_expression
       @operator = operator
       @right_expression = right_expression
-    end
-  end
-
-  class LiteralExpression < Expression
-    attr_reader :value
-
-    def initialize(value)
-      @value = value
     end
   end
 
@@ -36,7 +30,15 @@ module ApiFilter
     attr_reader :expression
 
     def initialize(expression)
-      @expression
+      @expression = expression
+    end
+  end
+
+  class LiteralExpression < Expression
+    attr_reader :value
+
+    def initialize(value)
+      @value = value
     end
   end
 end
